@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Document</title>
+ <style>
+  #Div1
+  {
+       width: 50%;
+       padding: 20px;
+       margin-left: 10px;
+       border: 1px solid black;
+  }
+ </style>
+</head>
+<body>
+      <div id="Div1">
+          <h1> Délibération de fin d'année</h1>   
+           <label > Année  de formation </label> 
+             <select id="annee">
+                    <option value="0"> 2 eme année</option>
+                    <option value="1" > 1 eme année</option>
+           </select>              
+           <br>
+               <label > Deja radoublant </label> <input type="checkbox" id="radoublant" > <br>
+               <label >Moyenne generale </label> <input type="text" id="moyenne">
+               <br>
+               <label > Nombres total d'absences</label>  <input type="text" id="nombres_d"> <br>
+               <button onclick="Aficher()"> OK</button>
+               <br>
+               <label > --> Desision</label>
+              
+               <input type="text" readonly id="desision"  style="width:40%;" >
+               
+</div>
+      <script>
+                               
+                              var annee=document.getElementById("annee"); 
+                              var radoublant=document.getElementById("radoublant"); 
+                              var moyenne=document.getElementById("moyenne"); 
+                              var nombres_d=document.getElementById("nombres_d"); 
+                              var desision=document.getElementById("desision"); 
+                              var div=document.getElementById("div"); 
+                             
+                     function Aficher()
+                    {
+                              var x=annee.selectedIndex;
+                          if(moyenne.value==""||nombres_d.value=="")
+                          {
+                              alert("Attonsion!! " )   ;
+                                return;
+                          }
+                         // var note=RegExp('^[0-9]+$','g');
+                      //note.test(moyenne.value)==false ||
+                           if( moyenne.value<0||moyenne.value>20)
+                           {
+                              alert("Attonsion moyenne il doit etre sup 0 et inf 20 !!"  )  ;
+                              
+                           }
+                           else
+                           {
+                             // desision.value= "note "  +   moyenne.value+ "nombres_d "+nombres_d.value; 
+                             if(moyenne.value>=10  )
+                            {
+                              desision.value="Admis"  ;                    
+                            }
+                            else
+                            {
+                                                
+                           
+                               if(annee[x].index==0)
+                               {
+                               
+                                     if(moyenne.value>=9.5 && moyenne.value<10 )
+                                     {
+                                                if(nombres_d.value<30)
+                                                {
+                                                            desision.value="Admis avec bonus ";
+                                                                                      
+                                                }
+                                                
+                                                else{
+                                                            if(radoublant.checked==true) 
+                                                         {
+                                                            desision.value="Elimene. " ; 
+                                                         }     
+                                                         else{
+                                                            desision.value="Redouble. " ;                            
+                                                         }        
+                                                }
+                                     }
+                                     else{
+                                                            if(radoublant.checked==true) 
+                                                         {
+                                                            desision.value="Elimene. " ; 
+                                                         }     
+                                                         else{
+                                                            desision.value="Redouble. " ;                            
+                                                         }   
+                                     }
+                               }     
+                               else
+                               {
+                                if(moyenne.value>=9 && moyenne.value<10  ) 
+                                {
+                                           if(nombres_d.value<30)
+                                           {
+                                                            desision.value="Rechete. " ;                      
+                                           }
+                                           else{
+                                                         if(radoublant.checked==true) 
+                                                         {
+                                                            desision.value="Elimene. " ; 
+                                                         }     
+                                                         else{
+                                                            desision.value="Redouble. " ;                            
+                                                         }              
+                                           }
+                                }       
+                                else
+                                {
+                                                            if(radoublant.checked==true) 
+                                                         {
+                                                            desision.value="Elimene. " ; 
+                                                         }     
+                                                         else{
+                                                            desision.value="Redouble. " ;                            
+                                                         }   
+                                }        
+                               }     
+                                                           
+                            }  
+                          
+                           }
+
+                          //    desision.value="bonjour" + moyenne.value;
+                                           
+                   }
+                   </script>                      
+</body>
+</html>
